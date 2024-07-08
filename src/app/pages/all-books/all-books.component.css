@@ -2,3 +2,8 @@
 {
     height: 98%;
 }
+
+.delete-book
+{
+    cursor: pointer;
+}

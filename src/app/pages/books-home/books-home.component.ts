@@ -20,12 +20,20 @@ export class BooksHomeComponent implements OnInit {
   //UI LOGIC
   async populateBooks(): Promise<void> {
     this.books = await this.getBooks();
-    console.log(this.books);
   }
-  
-  async populateBooksSearch(query:string): Promise<void> {
+
+  async populateBooksSearch(query: string): Promise<void> {
     this.books = await this.getBookSearch(query);
-    console.log(this.books);
+  }
+
+  async createOrUpdateBook(book: Book){
+    const result = await this.manageBooksService.createOrUpdateBook(book);
+    await this.populateBooks();
+  }
+
+  async deleteBook(id:string): Promise<void> {
+    const result = await this.delete(id);
+    await this.populateBooks();
   }
 
   //DATA LOGIC
@@ -33,8 +41,16 @@ export class BooksHomeComponent implements OnInit {
     return await this.manageBooksService.getBooks();
   }
 
-  async getBookSearch(query:string): Promise<Book[]> {
+  async getBookById(id:string): Promise<Book> {
+    return await this.manageBooksService.getBookById(id);
+  }
+
+  async getBookSearch(query: string): Promise<Book[]> {
     return await this.manageBooksService.getBooksSearch(query);
+  }
+
+  async delete(id: string): Promise<Book> {
+    return await this.manageBooksService.delete(id);
   }
 
 }

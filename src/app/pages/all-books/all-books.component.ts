@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, output } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { ManageBooksService } from 'src/app/services/manage-books.service';
 
@@ -8,9 +8,20 @@ import { ManageBooksService } from 'src/app/services/manage-books.service';
   styleUrl: './all-books.component.css'
 })
 export class AllBooksComponent {
-  @Input() books : Book[] = [];
+  @Input() books: Book[] = [];
+  @Output() bookUpdateEmitter = new EventEmitter<string>();
+  @Output() bookDeleteEmitter = new EventEmitter<string>();
 
   //LIFE CYCLES
-  constructor(  ){}
+  constructor() { }
 
+  update(id: string) {
+    this.bookUpdateEmitter.emit(id);
+  }
+
+  delete(id: string) {
+    this.bookDeleteEmitter.emit(id);
+  }
+
+  
 }

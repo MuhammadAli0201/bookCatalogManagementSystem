@@ -15,6 +15,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzFormModule,
     NzSelectModule,
     ReactiveFormsModule,
-    NzPopoverModule
+    NzPopoverModule,
+    NzIconModule
   ]
 })
 export class PagesModule { }

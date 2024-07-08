@@ -1,7 +1,14 @@
-<nz-card class="all-books" nzTitle="Book List"  nzType="inner">
-    <div *ngFor="let data of books; index as i">
-        <span>{{i + 1}}</span>
-        <span>. </span>
-        <span>{{data.title}}</span>
+<nz-card class="all-books" nzTitle="Book List" nzType="inner">
+    <div class="w-75" nz-flex nzJustify="space-between" *ngFor="let data of books; index as i">
+        <div >
+            <span>{{i + 1}}</span>
+            <span>. </span>
+            <span>{{data.title}}</span>
+            <span></span>
+        </div>
+        <div>            
+        <span class="text-success mr-3" nz-icon nzType="eye" nzTheme="outline" (click)="update(data.id)"></span>
+        <span nz-icon nzType="delete" class="text-danger delete-book" nzTheme="outline" (click)="delete(data.id)" ></span>
+        </div>
     </div>
 </nz-card>

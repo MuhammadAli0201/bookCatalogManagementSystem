@@ -24,7 +24,7 @@
                         Year
                     </nz-form-label>
                     <input nz-input formControlName="publicationYear" [min]="minDate | date: 'yyyy-MM-dd'"
-                        [max]="maxDate | date: 'yyyy-MM-dd'" type="date" name="date" />
+                        [max]="maxDate | date: 'yyyy-MM-dd'" type="date" name="date" (change)="handleISBN()" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item class="w-100 ml-2">
@@ -35,7 +35,7 @@
                     <input nz-input formControlName="isbn" type="text" name="isbn" />
                 </nz-form-control>
             </nz-form-item>
-        </nz-flex>
+        </nz-flex>        
 
         <nz-form-item>
             <nz-form-control nzErrorTip="Please select atleast one.">
@@ -51,7 +51,7 @@
         </nz-form-item>
 
         <nz-form-item class="w-100 ml-2">
-            <nz-form-control nzErrorTip="Please Enter atleast one Tag.">
+            <nz-form-control nzErrorTip="Tags Must be 5.">
                 <nz-form-label>
                     Tags
                 </nz-form-label>
@@ -59,13 +59,13 @@
                     <ng-template #tagbtn>
                         <button nzSize="large" nz-button nzType="primary" (click)="addTag(tag)">Add</button>
                     </ng-template>
-                    <input nz-input #tag type="text" name="tags" />
+                    <input nz-input formControlName="tags" #tag type="text" name="tags" />
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
 
         <nz-flex>
-            <div *ngFor="let tag of getTags(); index as i">
+            <div class="m-2" *ngFor="let tag of getTags(); index as i">
                 <span>{{ tag.tagName}}</span><span class="text-danger remove-tag" (click)="removeTag(i)"> X</span>
             </div>
         </nz-flex>
@@ -85,7 +85,7 @@
                         <nz-form-item>
                             <nz-form-control nzErrorTip="Chapter No is required.">
                                 <nz-form-label>Chapter No</nz-form-label>
-                                <input formControlName="chapterNo" nz-input type="int">
+                                <input formControlName="chapterNo" nz-input type="int" readonly>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
@@ -108,9 +108,20 @@
             </nz-form-control>
         </nz-form-item>
 
-        <nz-flex *ngFor="let chapter of getChapters();index as i">
-            <p>{{chapter.title}}</p> <span class="text-danger remove-tag" (click)="removeChapter(i)">  X</span>
+        <nz-flex nz-row>
+            <nz-flex class="m-2" *ngFor="let chapter of getChapters();index as i">
+                <span>{{chapter.title}}</span> <span class="text-danger remove-tag" (click)="removeChapter(i)">  X</span>
+            </nz-flex>
         </nz-flex>
+
+        <nz-form-item>
+            <nz-form-control>
+                <nz-form-label>Total Pages</nz-form-label>
+                <input formControlName="totalPages" nz-input type="number" readonly>
+            </nz-form-control>
+        </nz-form-item>
+
+        <div class="text-danger">{{errorMsg}}</div>
 
         <button class="btn btn-block btn-primary ml-2" (click)="createOrUpdate()">
             Save Book

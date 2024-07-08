@@ -11,10 +11,10 @@
 
         <nz-flex class="add-edit-all-books-parent" nzJustify="space-between">
             <div class="w-100 h-100 m-2">
-                <app-all-books [books]="books" class="w-100 h-100"></app-all-books>
+                <app-all-books [books]="books" (bookUpdateEmitter)="getBookById($event)" (bookDeleteEmitter)="deleteBook($event)" class="w-100 h-100"></app-all-books>
             </div>
             <nz-flex class="w-100 h-100 m-2">
-                <app-create-or-update-book class="w-100 h-100"></app-create-or-update-book>
+                <app-create-or-update-book (bookEmitter)="createOrUpdateBook($event)" class="w-100 h-100"></app-create-or-update-book>
             </nz-flex>
         </nz-flex>
     </nz-card>
