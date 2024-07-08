@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "BookCatalogManagementSystem:build:production"
+              "buildTarget": "BookCatalogManagementSystem:build:production"
             },
             "development": {
-              "browserTarget": "BookCatalogManagementSystem:build:development"
+              "buildTarget": "BookCatalogManagementSystem:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "BookCatalogManagementSystem:build"
+            "buildTarget": "BookCatalogManagementSystem:build"
           }
         },
         "test": {
