@@ -1,0 +1,14 @@
+.home-parent-container
+{
+    padding: 20px;
+}
+
+.home-card
+{
+    height: 93vh;
+    width: 100%;
+}
+.add-edit-all-books-parent
+{
+    height: 70vh;
+}

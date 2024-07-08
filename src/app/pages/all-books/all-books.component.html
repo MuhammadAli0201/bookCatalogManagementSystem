@@ -1,0 +1,7 @@
+<nz-card class="all-books" nzTitle="Book List"  nzType="inner">
+    <div *ngFor="let data of books; index as i">
+        <span>{{i + 1}}</span>
+        <span>. </span>
+        <span>{{data.title}}</span>
+    </div>
+</nz-card>

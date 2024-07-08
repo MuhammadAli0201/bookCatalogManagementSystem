@@ -1,0 +1,9 @@
+.create-or-edit-books {
+  height: 98%;
+  overflow: auto;
+}
+
+.remove-tag {
+  cursor: pointer;
+  margin-left: 3px;
+}

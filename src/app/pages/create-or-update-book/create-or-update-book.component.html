@@ -1,0 +1,119 @@
+<nz-card class="create-or-edit-books" nzTitle="Add/Edit Book" nzType="inner">
+    <form nz-form [formGroup]="bookForm">
+        <nz-form-item nz-col>
+            <nz-form-control nzErrorTip="Please Enter Title.">
+                <nz-form-label>
+                    Title
+                </nz-form-label>
+                <input nz-input formControlName="title" type="text" name="title" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col>
+            <nz-form-control nzErrorTip="Please Enter Author Name.">
+                <nz-form-label>
+                    Author
+                </nz-form-label>
+                <input nz-input formControlName="author" type="text" name="author" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-flex>
+            <nz-form-item class="w-25">
+                <nz-form-control nzErrorTip="Please Select Publication Year.">
+                    <nz-form-label>
+                        Year
+                    </nz-form-label>
+                    <input nz-input formControlName="publicationYear" [min]="minDate | date: 'yyyy-MM-dd'"
+                        [max]="maxDate | date: 'yyyy-MM-dd'" type="date" name="date" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="w-100 ml-2">
+                <nz-form-control nzErrorTip="Please Enter Correct ISBN.">
+                    <nz-form-label>
+                        ISBN
+                    </nz-form-label>
+                    <input nz-input formControlName="isbn" type="text" name="isbn" />
+                </nz-form-control>
+            </nz-form-item>
+        </nz-flex>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please select atleast one.">
+                <nz-form-label nzFor="genre">Genre</nz-form-label>
+                <nz-select formControlName="genre" id="genre" nzPlaceHolder="Select a option.">
+                    <nz-option nzValue="Fiction" nzLabel="Fiction"></nz-option>
+                    <nz-option nzValue="Mystery" nzLabel="Mystery"></nz-option>
+                    <nz-option nzValue="Non-fiction" nzLabel="Non-fiction"></nz-option>
+                    <nz-option nzValue="Science-fiction" nzLabel="Science fiction"></nz-option>
+                    <nz-option nzValue="Academic" nzLabel="Academic"></nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="w-100 ml-2">
+            <nz-form-control nzErrorTip="Please Enter atleast one Tag.">
+                <nz-form-label>
+                    Tags
+                </nz-form-label>
+                <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="tagbtn">
+                    <ng-template #tagbtn>
+                        <button nzSize="large" nz-button nzType="primary" (click)="addTag(tag)">Add</button>
+                    </ng-template>
+                    <input nz-input #tag type="text" name="tags" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-flex>
+            <div *ngFor="let tag of getTags(); index as i">
+                <span>{{ tag.tagName}}</span><span class="text-danger remove-tag" (click)="removeTag(i)"> X</span>
+            </div>
+        </nz-flex>
+
+        <nz-form-item class="w-100 ml-2">
+            <nz-form-control>
+                <nz-form-label>
+                    Chapters
+                </nz-form-label>
+                <button nz-button nz-popover class="w-100" nzPopoverTitle="Title" nzPopoverTrigger="click"
+                    [nzPopoverContent]="contentTemplate" nzType="dashed">
+                    <span nz-icon nzType="plus"></span>
+                    Add Chapter
+                </button>
+                <ng-template #contentTemplate>
+                    <form nz-form [formGroup]="chapterFB">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Chapter No is required.">
+                                <nz-form-label>Chapter No</nz-form-label>
+                                <input formControlName="chapterNo" nz-input type="int">
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Title is Required.">
+                                <nz-form-label>Title</nz-form-label>
+                                <input formControlName="title" nz-input type="text">
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <nz-form-label>Page Count</nz-form-label>
+                                <input formControlName="pageCount" nz-input type="number">
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-flex nzJustify="center">
+                            <button nz-button nzType="primary" (click)="addChapter()">Add Chapter</button>
+                        </nz-flex>
+                    </form>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-flex *ngFor="let chapter of getChapters();index as i">
+            <p>{{chapter.title}}</p> <span class="text-danger remove-tag" (click)="removeChapter(i)">  X</span>
+        </nz-flex>
+
+        <button class="btn btn-block btn-primary ml-2" (click)="createOrUpdate()">
+            Save Book
+        </button>
+    </form>
+</nz-card>

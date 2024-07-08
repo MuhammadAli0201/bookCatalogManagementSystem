@@ -1,0 +1,21 @@
+<nz-flex class="home-parent-container">
+    <nz-card class="home-card" [nzTitle]="title">
+        <ng-template #title>
+            <h4>Book Catalog Management System</h4>
+        </ng-template>
+
+        <nz-flex class="w-100 h-100">
+            <app-search-books class="w-100 h-100 m-2"
+                (bookSearchQuery)="populateBooksSearch($event)"></app-search-books>
+        </nz-flex>
+
+        <nz-flex class="add-edit-all-books-parent" nzJustify="space-between">
+            <div class="w-100 h-100 m-2">
+                <app-all-books [books]="books" class="w-100 h-100"></app-all-books>
+            </div>
+            <nz-flex class="w-100 h-100 m-2">
+                <app-create-or-update-book class="w-100 h-100"></app-create-or-update-book>
+            </nz-flex>
+        </nz-flex>
+    </nz-card>
+</nz-flex>
